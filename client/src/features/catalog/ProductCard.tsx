@@ -1,8 +1,10 @@
 import {
+  Avatar,
   Button,
   Card,
   CardActions,
   CardContent,
+  CardHeader,
   CardMedia,
   Typography,
 } from "@mui/material";
@@ -15,24 +17,42 @@ interface Props {
 export default function ProductCard({ product }: Props) {
   return (
     <>
-      <Card sx={{ maxWidth: 345 }}>
+      <Card>
+        <CardHeader
+          avatar={
+            <Avatar sx={{ bgcolor: "secondary.main" }}>
+              {product.name.charAt(0).toUpperCase()}
+            </Avatar>
+          }
+          title={product.name}
+          titleTypographyProps={{
+            sx: { fontWeight: "bold", color: "primary.main" },
+          }}
+        />
         <CardMedia
-          sx={{ height: 140 }}
-          image="http://picsum.photos/200"
-          title="green iguana"
+          sx={{
+            backgroundSize: "contain",
+            height: 140,
+            bgcolor: "primary.light",
+          }}
+          image={product.pictureUrl}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Lizard
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="div"
+            color="secondary"
+          >
+            ${(product.price / 100).toFixed(2)}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+            {product.brand} / {product.type}
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Share</Button>
-          <Button size="small">Learn More</Button>
+          <Button size="small">ADD TO CART</Button>
+          <Button size="small">VIEW</Button>
         </CardActions>
       </Card>
     </>
