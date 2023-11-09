@@ -3,6 +3,7 @@ import { CssBaseline, createTheme } from "@mui/material";
 import Header from "./Header";
 import { useState } from "react";
 import { ThemeProvider } from "@emotion/react";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [isDarkMode, setDarkMode] = useState(false);
@@ -23,7 +24,7 @@ function App() {
     <ThemeProvider theme={themeContext}>
       <CssBaseline />
       <Header handleThemeChange={handleThemeChange} isDarkMode={isDarkMode} />
-      <Catalog />
+      <Outlet />
     </ThemeProvider>
   );
 }
