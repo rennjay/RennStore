@@ -27,16 +27,23 @@ const rightLinks = [
   { title: "Register", path: "register" },
 ];
 
+const navStyles = {
+  color: "inherit",
+  textDecoration: "none",
+  typography: "h6",
+  "&:hover": {
+    color: "grey.500",
+  },
+  "&.active": {
+    color: "text.secondary",
+  },
+};
+
 export default function Header({ handleThemeChange, isDarkMode }: Props) {
   return (
     <AppBar position="static" sx={{ mb: 3 }}>
       <Toolbar>
-        <Typography
-          variant="h6"
-          component={NavLink}
-          to="/"
-          sx={{ color: "inherit", textDecoration: "none" }}
-        >
+        <Typography variant="h6" component={NavLink} to="/" sx={navStyles}>
           Renn-Store
         </Typography>
         <Switch
@@ -46,12 +53,7 @@ export default function Header({ handleThemeChange, isDarkMode }: Props) {
         <List sx={{ display: "flex" }}>
           {midLinks.map(({ title, path }) => {
             return (
-              <ListItem
-                component={NavLink}
-                to={path}
-                key={path}
-                sx={{ color: "inherit", typography: "subtitle1" }}
-              >
+              <ListItem component={NavLink} to={path} key={path} sx={navStyles}>
                 {title.toUpperCase()}
               </ListItem>
             );
@@ -67,12 +69,7 @@ export default function Header({ handleThemeChange, isDarkMode }: Props) {
         <List sx={{ display: "flex" }}>
           {rightLinks.map(({ title, path }) => {
             return (
-              <ListItem
-                component={NavLink}
-                to={path}
-                key={path}
-                sx={{ color: "inherit", typography: "subtitle1" }}
-              >
+              <ListItem component={NavLink} to={path} key={path} sx={navStyles}>
                 {title.toUpperCase()}
               </ListItem>
             );
