@@ -1,5 +1,5 @@
 import Catalog from "../../features/catalog/Catalog";
-import { CssBaseline, createTheme } from "@mui/material";
+import { Box, Container, CssBaseline, createTheme } from "@mui/material";
 import Header from "./Header";
 import { useState } from "react";
 import { ThemeProvider } from "@emotion/react";
@@ -24,7 +24,9 @@ function App() {
     <ThemeProvider theme={themeContext}>
       <CssBaseline />
       <Header handleThemeChange={handleThemeChange} isDarkMode={isDarkMode} />
-      <Outlet />
+      <Container maxWidth="lg" style={{ paddingTop: "30px" }}>
+        <Outlet />
+      </Container>
     </ThemeProvider>
   );
 }
