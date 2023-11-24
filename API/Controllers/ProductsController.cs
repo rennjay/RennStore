@@ -1,13 +1,12 @@
-﻿using API.Data;
+﻿using API.Controllers;
+using API.Data;
 using API.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API;
 
-[ApiController]
-[Route("api/[controller]")]
-public class ProductsController : ControllerBase
+public class ProductsController : BaseApiController
 {
     private readonly StoreContext _context;
     public ProductsController(StoreContext context)
