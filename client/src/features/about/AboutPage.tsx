@@ -68,16 +68,18 @@ export default function AboutPage() {
         </Button>
         <Button onClick={getValidationErrors}>Get Validation Error</Button>
       </ButtonGroup>
-      <Alert severity="error">
-        <AlertTitle>Validation Error</AlertTitle>
-        <List>
-          {validationErrors.map((error: string, index: number) => (
-            <ListItem>
-              <ListItemText key={index}>{error}</ListItemText>
-            </ListItem>
-          ))}
-        </List>
-      </Alert>
+      {validationErrors && (
+        <Alert severity="error">
+          <AlertTitle>Validation Error</AlertTitle>
+          <List>
+            {validationErrors.map((error: string, index: number) => (
+              <ListItem>
+                <ListItemText key={index}>{error}</ListItemText>
+              </ListItem>
+            ))}
+          </List>
+        </Alert>
+      )}
     </Container>
   );
 }
