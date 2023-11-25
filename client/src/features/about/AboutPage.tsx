@@ -1,7 +1,25 @@
-import { Button, ButtonGroup, Container, Typography } from "@mui/material";
+import {
+  Alert,
+  AlertTitle,
+  Button,
+  ButtonGroup,
+  Container,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+} from "@mui/material";
 import agent from "../../app/api/agent";
+import { useState } from "react";
 
 export default function AboutPage() {
+  const [validationErrors, setValidationErrors] = useState<string[]>([]);
+
+  const getValidationErrors = () => {
+    agent.TestErrors.getvalidationError()
+      .then(() => "You should not be seeing this!!")
+      .catch((error) => setValidationErrors(error));
+  };
   return (
     <Container>
       <Typography variant="h2" gutterBottom>
@@ -48,16 +66,18 @@ export default function AboutPage() {
         >
           Get 500 Error
         </Button>
-        <Button
-          onClick={() =>
-            agent.TestErrors.getvalidationError().catch((reason) =>
-              console.log("ERROR", reason)
-            )
-          }
-        >
-          Get Validation Error
-        </Button>
+        <Button onClick={getValidationErrors}>Get Validation Error</Button>
       </ButtonGroup>
+      <Alert severity="error">
+        <AlertTitle>Validation Error</AlertTitle>
+        <List>
+          {validationErrors.map((error: string, index: number) => (
+            <ListItem>
+              <ListItemText key={index}>{error}</ListItemText>
+            </ListItem>
+          ))}
+        </List>
+      </Alert>
     </Container>
   );
 }
