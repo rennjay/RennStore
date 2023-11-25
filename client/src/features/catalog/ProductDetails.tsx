@@ -12,10 +12,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Product from "../../app/models/Product";
-//TODO: geturlid from search bar
-// load product
-// call from axios
-// loading state
+
 export default function ProductDetailsPage() {
   const { id } = useParams<{ id: string }>();
   const [product, setProduct] = useState<Product | null>(null);

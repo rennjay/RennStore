@@ -18,7 +18,13 @@ export default function AboutPage() {
         <Button onClick={() => agent.TestErrors.get401Error()}>
           Get 401 Error
         </Button>
-        <Button onClick={() => agent.TestErrors.get404Error()}>
+        <Button
+          onClick={() =>
+            agent.TestErrors.get404Error().catch((reason) =>
+              console.log(reason)
+            )
+          }
+        >
           Get 404 Error
         </Button>
         <Button onClick={() => agent.TestErrors.get500Error()}>
