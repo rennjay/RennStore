@@ -12,10 +12,22 @@ export default function AboutPage() {
         aria-label="outlined primary button group"
         fullWidth
       >
-        <Button onClick={() => agent.TestErrors.get400Error()}>
+        <Button
+          onClick={() =>
+            agent.TestErrors.get400Error().catch((reason) =>
+              console.log(reason)
+            )
+          }
+        >
           Get 400 Error
         </Button>
-        <Button onClick={() => agent.TestErrors.get401Error()}>
+        <Button
+          onClick={() =>
+            agent.TestErrors.get401Error().catch((reason) =>
+              console.log(reason)
+            )
+          }
+        >
           Get 401 Error
         </Button>
         <Button
@@ -27,10 +39,22 @@ export default function AboutPage() {
         >
           Get 404 Error
         </Button>
-        <Button onClick={() => agent.TestErrors.get500Error()}>
+        <Button
+          onClick={() =>
+            agent.TestErrors.get500Error().catch((reason) =>
+              console.log(reason)
+            )
+          }
+        >
           Get 500 Error
         </Button>
-        <Button onClick={() => agent.TestErrors.getvalidationError()}>
+        <Button
+          onClick={() =>
+            agent.TestErrors.getvalidationError().catch((reason) =>
+              console.log("ERROR", reason)
+            )
+          }
+        >
           Get Validation Error
         </Button>
       </ButtonGroup>
