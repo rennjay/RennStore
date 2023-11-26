@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Product from "../../app/models/Product";
 import NotFoundError from "../../app/errors/NotFoundError";
+import LoadingComponent from "../../app/layout/LoadingComponent";
 
 export default function ProductDetailsPage() {
   const { id } = useParams<{ id: string }>();
@@ -27,7 +28,8 @@ export default function ProductDetailsPage() {
       .finally(() => setIsLoading(false));
   }, [id]);
 
-  if (isLoading) return <h4>Loading...</h4>;
+  if (isLoading)
+    return <LoadingComponent message="Loading product details..." />;
 
   if (!product) return <NotFoundError />;
 
