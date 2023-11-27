@@ -20,7 +20,7 @@ namespace API.Entities
                 return;
             }
 
-            var existingItem = Items.FirstOrDefault(item => item.Id == product.Id);
+            var existingItem = Items.FirstOrDefault(item => item.ProductId == product.Id);
 
             if (existingItem is not null)
             {
