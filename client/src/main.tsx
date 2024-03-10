@@ -7,9 +7,12 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { router } from "./app/router/router.tsx";
 import { RouterProvider } from "react-router-dom";
+import { ShopContextProvider } from "./app/context/ShopContext.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ShopContextProvider>
+      <RouterProvider router={router} />
+    </ShopContextProvider>
   </React.StrictMode>
 );
