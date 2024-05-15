@@ -11,6 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
+import { useShopContext } from "../context/ShopContext";
 
 interface Props {
   isDarkMode: boolean;
@@ -41,6 +42,9 @@ const navStyles = {
 };
 
 export default function Header({ handleThemeChange, isDarkMode }: Props) {
+  const { basket } = useShopContext();
+  const itemCount =
+    basket?.items.reduce((sum, item) => sum + item.quantity, 0) ?? 0;
   return (
     <AppBar position="static" sx={{ mb: 3 }}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -73,7 +77,7 @@ export default function Header({ handleThemeChange, isDarkMode }: Props) {
             color="inherit"
             sx={{ mr: 2 }}
           >
-            <Badge badgeContent="4" color="secondary">
+            <Badge badgeContent={itemCount} color="secondary">
               <ShoppingCart />
             </Badge>
           </IconButton>

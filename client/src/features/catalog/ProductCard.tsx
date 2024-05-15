@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import LoadingComponent from "../../app/layout/LoadingComponent";
 import agent from "../../app/api/agent";
 import { LoadingButton } from "@mui/lab";
+import { useShopContext } from "../../app/context/ShopContext";
 
 interface Props {
   product: Product;
@@ -21,10 +22,12 @@ interface Props {
 
 export default function ProductCard({ product }: Props) {
   const [isLoading, setIsLoading] = useState(false);
+  const { setBasket } = useShopContext();
 
   const handleAddToBasket = (productId: number) => {
     setIsLoading(true);
     agent.Basket.addItem(productId)
+      .then((basket) => setBasket(basket.value))
       .catch((error) => console.log(error))
       .finally(() => setIsLoading(false));
   };
